@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Sign up
+{% endblock %}
+
+{% block body %}
+
+    {% if error %}
+        <p><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+
+    <form action="{{url_for('signup')}}" method="POST">
+        <dl>
+            <dd>Email address</dd>
+            <dd><input type="email" placeholder="email address" name="emailSignup" required></dd>
+            <dd>Password</dd>
+            <dd><input type="password" placeholder="password" name="passwordSignup" required></dd>
+            <dd>Confirm password</dd>
+            <dd><input type="password" placeholder="password" name="passwordSignup_RE" required></dd>
+            <dd>Pen name for reviews</dd>
+            <dd><input type="text" placeholder="pen name" name="penname" required></dd>
+        </dl>
+        <p><input class="btn btn-dark my-btn-height" type="submit" value="Submit"></p>
+              
+    </form>
+ 
+{% endblock %}

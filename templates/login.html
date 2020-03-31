@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    Login
+{% endblock %}
+
+{% block body %}
+
+    {% if error %}
+        <p><strong>Error:</strong> {{ error }}</p>
+    {% endif %}
+
+    <form action="{{url_for('login')}}" method="POST">
+        <dl>
+            <dd>Email address</dd>
+            <dd><input type="email" placeholder="email address" name="emailLogin" required></dd>
+            <dd>Password</dd>
+            <dd><input type="password" placeholder="password" name="passwordLogin" required></dd>
+        </dl>
+        <p><input class="btn btn-dark my-btn-height" type="submit" value="login"></p>
+    <p>No account? <a class="signup" href="{{url_for('signup')}}">Create one.</a></p>        
+    </form>
+ 
+{% endblock %}

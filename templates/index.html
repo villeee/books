@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+   Search books
+{% endblock %}
+
+{% block body %}
+
+    <form action="{{ url_for('index' )}}" method="POST">
+        <input type="text" placeholder="Title, Author, ISBN" name="text"><br>
+        <button type="submit" class="btn btn-dark my-btn-height">Submit</button>
+    </form>
+  
+    <main>       
+        <p>{{ message }}</p>
+
+        {% for x in data %}
+                 <a href="/isbn/{{ x.isbn }}">
+                <p> <b>{{ x.title }}</b> 
+                by {{ x.author }} | {{ x.year }} | ISBN: {{ x.isbn }} </p> </a>
+        {% endfor %}       
+    </main>
+    
+{% endblock %}

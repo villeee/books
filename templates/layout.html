@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">       
+        <meta name="viewport" content="width = device-width"> 
+        <title>
+           Books
+        </title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            header {
+                background: #580e0a;
+                padding-bottom: 10px;
+                position: fixed;
+                top: 0;
+                height: 60px;
+                width: 100%;
+                z-index: 1;
+             /*   box-shadow: 0px 0px 0px 2px rgba(32, 32, 31, 0.5);         */
+            }
+
+            .my-top-padding {
+                padding-top: 40px;
+            }
+
+            /* Login-sivun Sign up -linkki */
+            a.signup:link { color: rgb(18, 177, 76); text-decoration:none; }
+            a.signup:hover { color: rgb(44, 37, 30); text-decoration:none; }
+
+            a:link {
+                color: rgb(44, 37, 30);
+            }
+
+            .local-background {
+                background-color: rgb(143, 47, 47);
+            }
+
+            a:hover{
+                color: rgb(34, 145, 75);
+                text-decoration: none;
+            }
+
+            .logo {
+                float: left;
+                padding-top: 25px;
+                margin-left: 6px;
+            }
+
+            .reviews {
+                display: inline-block;
+                font-size: 1rem;            
+                width: 100%;              
+            }
+
+            #add_rating {                
+            /*    display: inline-block;*/
+                width: 30%;
+                height: 100%
+                
+            }
+
+            #write_review {               
+              /*  float: left;*/
+                width: 100%;
+                height: 100%;
+            }
+
+            .my-btn-height {
+                padding: 0px 10px;
+                margin-top: 5px;
+            }
+
+            input {
+                margin-bottom: 10px;
+            }
+
+            hr {
+                height: 3px;
+                background-color: #dbc8ba;
+                border: none;
+                margin-bottom: 30px;
+            }
+
+            .my-bg {
+                background-color: rgb(255, 255, 255);               
+            }
+
+            .my-reviews-bg {
+                background-color: rgb(248, 243, 238);
+                padding: 20px;               
+            }
+
+            .my-allreviews-bg {
+                background-color: rgb(233, 220, 207);
+                padding: 20px;               
+            }
+
+            .my-align-right {
+                margin: 26px 0px 0px 0px;
+                float: right;
+            }
+         
+            .bg {
+                background: repeating-linear-gradient(0deg, #382e2c 4.63%, #ffffff 4.63%, #ffffff 5.56%, #bf9f8a 5.56%, #bf9f8a 10.19%, #fff 10.19%, #fff 11.11%, #46433e 11.11%, #46433e 15.74%, #fff 15.74%, #fff 16.67%, #876059 16.67%, #876059 21.30%, #fff 21.30%, #fff 22.22%, #62554d 22.22%, #62554d 26.85%, #fff 26.85%, #fff 27.78%, #d4cbc2 27.78%, #d4cbc2 32.41%, #fff 32.41%, #fff 33.33%, #1c1c1c 33.33%, #1c1c1c 37.96%, #fff 37.96%, #fff 38.89%, #a46554 38.89%, #a46554 43.52%, #fff 43.52%, #fff 44.44%, #b58749 44.44%, #b58749 49.07%, #fff 49.07%, #fff 50%, #382e2c 50%, #382e2c 54.63%, #ffffff 54.63%, #ffffff 55.56%, #bf9f8a 55.56%, #bf9f8a 60.19%, #fff 60.19%, #fff 61.11%, #46433e 61.11%, #46433e 65.74%, #fff 65.74%, #fff 66.67%, #876059 66.67%, #876059 71.30%, #fff 71.30%, #fff 72.22%, #62554d 72.22%, #62554d 76.85%, #fff 76.85%, #fff 77.78%, #d4cbc2 77.78%, #d4cbc2 82.41%, #fff 82.41%, #fff 83.33%, #1c1c1c 83.33%, #1c1c1c 87.96%, #fff 87.96%, #fff 88.89%, #a46554 88.89%, #a46554 93.52%, #fff 93.52%, #fff 94.44%, #b58749 94.44%, #b58749 99.07%, #fff 99.07%, #fff 100%);
+                background-size: 1080.00px 1080.00px;
+                );
+            }
+
+            .my-footer {
+                height: 100vh;
+            }
+            
+            h4 {
+                padding-top: 70px;
+            }
+
+            .my-shadow {
+              /*  box-shadow: 0px 0px 0px 33px rgba(0,0,0,0.3);  */
+            }
+            
+            /* SISÄLTÖALUEEN VARJOT */
+            .my-relative {
+                position: relative;
+            }
+            .shadow-left {
+            position: absolute;
+            left: -30px;
+            background: rgb(32, 32, 31);
+            width: 30px;
+            height: 100%;
+            opacity: 0.5;
+            }
+
+            .shadow-right {
+            position: absolute;
+            left: 0px;
+            background: rgb(32, 32, 31);
+            width: 30px;
+            height: 100%;
+            opacity: 0.5;
+            }
+
+            #my-menu a {
+                color:white;
+            }
+
+            .my-footer-blanko {
+               height: 60px;
+            }
+
+        </style>    
+    </head>
+
+    <header>
+        <div class="container ">
+            <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8 ">
+                    <a href="/"><img class="logo" src="/static/logo.png" alt=""></a> 
+                    {% if username | length %} 
+                        <div class="my-align-right" id="my-menu"><a href="{{ url_for("logout") }}">Logout</a></div>                 
+                    {% endif %}
+                </div>
+              <div class="col-2"></div>
+            </div>
+        </div>      
+    </header> 
+
+    <body class="bg">
+        <div class="container my-top-padding">
+            <div class="container row">
+                <div class="col-1 "></div>
+                <div class="col-1 my-bg">
+                    <div class="shadow-left"></div>
+                </div>
+                <div class="col-8 my-bg">                  
+                    <h4>{% block heading %}{% endblock %}</h4>
+                    {% block body %}{% endblock %}  
+                    <div class="my-footer-blanko"></div>  <!-- VALKOINEN MARGINAALI SIVUN LOPUSSA -->
+                </div>
+                <div class="col-1 my-bg "></div>
+                <div class="col-1 my-relative" >
+                    <div class="shadow-right"></div>
+                </div>
+
+                <div class="my-footer my-bg"></div>              
+            </div>           
+        </div>
+    </body>
+</html>

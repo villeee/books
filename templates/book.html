@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block heading %}
+    {{ selectedbook.title }}
+{% endblock %}
+
+{% block body %}
+
+    <p>Author: {{ selectedbook.author }} <br>
+        Publication year: {{ selectedbook.year }} <br>
+        ISBN: {{ selectedbook.isbn }} </p>
+    <div class="my-reviews-bg">
+        <h5>Reviews</h5> 
+    <div>  
+        {% if writtenreview != "1" %}
+      
+                <form class='form-group' action="{{ url_for('bookpage', isbn=selectedbook.isbn) }}" method="POST" >              
+                    <div id="write_review">
+                        <label for="">Write your review, {{ penname }}</label> <br>
+                        <textarea class="form-control" name="onereview"></textarea>
+                    </div>
+                    <br>
+                    <div id="add_rating">
+                        <label for="">Add rating</label> <br>
+                        <select name="onerating" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    <p><br><input class="btn btn-dark my-btn-height" type="submit" value="Submit"></p> 
+                    </div>
+                </form>
+        {% else %}
+                <p>You have reviewed this book, {{ penname }}.</p>
+        {% endif %}
+    </div>
+    
+    <div class="reviews"> 
+        <hr>  
+        {% if allreviews | length %} 
+            {% for r in allreviews %}
+                <p> <b>{{ r.penname }} </b> <br>
+                    {{ r.review }} <br>
+
+                <!--- Rating Stars -->
+                {% for i in range (r.rating) %}               
+                    <span class="fa fa-star checked"></span>               
+                {% endfor %}
+                </p>
+            {% endfor %}
+        {% else %}
+        <p>No reviews yet.</p>
+        {% endif %}  
+    </div>
+    </div>
+
+{% endblock %}

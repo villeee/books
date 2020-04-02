@@ -1,7 +1,8 @@
 import os
 import requests
-
+import json
 from helpers import *
+
 from flask import Flask, session, render_template, request, redirect, url_for, Markup
 from flask_session import Session
 from sqlalchemy import create_engine
@@ -85,9 +86,10 @@ def signup():
 @app.route("/isbn/<string:isbn>", methods=["GET","POST"])
 @login_required
 def bookpage(isbn):     
-    warning = ""
     writtenreview = ""   #--THIS user has not written review for this book yet
     username = session.get("username")
+    
+  #  print("Key: ",KEY)
     x = db.execute("SELECT penname FROM users WHERE username = :username", {"username": username}).fetchone()
     penname = x.penname
     session["reviews"]=[]
@@ -96,16 +98,25 @@ def bookpage(isbn):
         onereview = request.form.get('onereview')
         db.execute("INSERT INTO reviews (isbn, review, username, rating) VALUES (:isbn,:onereview,:username,:onerating)", { "isbn":isbn, "onereview":onereview, "username":username, "onerating":onerating })
         db.commit()
-    #allreviews = db.execute("SELECT * FROM reviews WHERE isbn = :isbn", {"isbn": isbn}).fetchall()    
+    # Kaikki kirjan arvostelut kannasta
     allreviews = db.execute("SELECT reviews.username, penname, review, rating, isbn FROM reviews INNER JOIN users ON reviews.username=users.username WHERE isbn = :isbn", {"isbn": isbn}).fetchall()     
- 
     for i in allreviews:
         session["reviews"].append(i)
         if i.username == session.get("username"):
             writtenreview = "1"   #-- This user has written review to this book
     selectedbook = db.execute("SELECT * FROM books WHERE isbn = :isbn", {"isbn": isbn}).fetchone()
     data = db.execute("SELECT * FROM books WHERE isbn = :isbn", {"isbn":isbn}).fetchall()
-    return render_template("book.html", data=data, penname=penname, writtenreview=writtenreview, reviews=session['reviews'], username=username, allreviews=allreviews, selectedbook=selectedbook, warning=warning) 
+    
+    # GOODREADS -haku
+    KEY = "kbSquMziUpcDvq6KAWA"     #-- Goodreads API KEY
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": KEY, "isbns": isbn})
+   # goodreads = res.json()
+   # print (goodreads)
+    average_rating = res.json()['books'][0]['average_rating']
+    ratings_count = res.json()['books'][0]['ratings_count']
+    print(average_rating)
+    print(ratings_count)
+    return render_template("book.html", data=data, penname=penname, average_rating=average_rating, ratings_count=ratings_count, writtenreview=writtenreview, reviews=session['reviews'], username=username, allreviews=allreviews, selectedbook=selectedbook) 
 
 
 @app.route("/logout")

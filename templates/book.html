@@ -5,10 +5,18 @@
 {% endblock %}
 
 {% block body %}
-
-    <p>Author: {{ selectedbook.author }} <br>
-        Publication year: {{ selectedbook.year }} <br>
-        ISBN: {{ selectedbook.isbn }} </p>
+    <div style="width: 55%; float:left;">
+        <p>Author: {{ selectedbook.author }} <br>
+            Publication year: {{ selectedbook.year }} <br>
+            ISBN: {{ selectedbook.isbn }} </br>
+    </div>
+    
+    <div style="width: 45%; float:left; background-color: #f1e9cd; text-align: center; line-height: 16px; padding: 10px 10px 0px 10px">
+        <p style="font-size: 0.875em"><span style="font-size: 1.25em; line-height: 24px;">Goodreads</span>  <br> average rating</p>
+        <p style="font-size: 1.75em"> {{ average_rating }} </p>
+        <p style="font-size: 0.75em">Ratings count: {{ ratings_count }} </p>
+    </div>
+    
     <div class="my-reviews-bg">
         <h5>Reviews</h5> 
     <div>  
@@ -17,12 +25,13 @@
                 <form class='form-group' action="{{ url_for('bookpage', isbn=selectedbook.isbn) }}" method="POST" >              
                     <div id="write_review">
                         <label for="">Write your review, {{ penname }}</label> <br>
-                        <textarea class="form-control" name="onereview"></textarea>
+                        <textarea class="form-control" name="onereview" required></textarea>
                     </div>
                     <br>
                     <div id="add_rating">
                         <label for="">Add rating</label> <br>
                         <select name="onerating" required>
+                            <option value=" " selected></option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>

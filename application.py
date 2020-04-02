@@ -108,7 +108,7 @@ def bookpage(isbn):
     data = db.execute("SELECT * FROM books WHERE isbn = :isbn", {"isbn":isbn}).fetchall()
     
     # GOODREADS -haku
-    KEY = "kbSquMziUpcDvq6KAWA"     #-- Goodreads API KEY
+    KEY = "kbSquMziUpcDvq6KAWA"    #-- Goodreads API KEY
     res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": KEY, "isbns": isbn})
     average_rating = res.json()['books'][0]['average_rating']
     ratings_count = res.json()['books'][0]['ratings_count']

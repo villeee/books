@@ -110,12 +110,8 @@ def bookpage(isbn):
     # GOODREADS -haku
     KEY = "kbSquMziUpcDvq6KAWA"     #-- Goodreads API KEY
     res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": KEY, "isbns": isbn})
-   # goodreads = res.json()
-   # print (goodreads)
     average_rating = res.json()['books'][0]['average_rating']
     ratings_count = res.json()['books'][0]['ratings_count']
-    print(average_rating)
-    print(ratings_count)
     return render_template("book.html", data=data, penname=penname, average_rating=average_rating, ratings_count=ratings_count, writtenreview=writtenreview, reviews=session['reviews'], username=username, allreviews=allreviews, selectedbook=selectedbook) 
 
 
